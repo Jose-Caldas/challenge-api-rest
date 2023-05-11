@@ -1,0 +1,9 @@
+
+POST http://localhost:3333/books
+Content-Type: application/json
+
+{
+    "title": "Novo livro",
+    "author": "John doe",
+    "isbnNumber": 7777777
+}
