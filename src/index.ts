@@ -34,6 +34,62 @@ app.post("/books", async (req: Request, res: Response) => {
   }
 });
 
+app.get("/books/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const book = await BookModel.findById(id);
+
+    if (!book) {
+      res.status(404).json({ msg: "Livro não encontrado!" });
+      return;
+    }
+    res.json(book);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+app.delete("/books/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    const book = await BookModel.findById(id);
+    if (!book) {
+      res.status(404).json({ msg: "Livro não encontrado!" });
+      return;
+    }
+
+    const deleteBook = await BookModel.findByIdAndDelete(id);
+    res.status(200).json({ deleteBook, msg: "Livro excluído com sucesso!" });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+app.put("/books/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    const { title, author, isbnNumber } = req.body;
+    const book: IBook = new BookModel({
+      title,
+      author,
+      isbnNumber,
+    });
+
+    const updateBook = await BookModel.findByIdAndUpdate(id, book);
+
+    if (!updateBook) {
+      res.status(404).json({ msg: "Livro não encontrado!" });
+      return;
+    }
+
+    res.status(200).json({ book, msg: "Livro atualizado com sucesso!" });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 conn();
 
 const PORT = process.env.PORT || process.env.LOCAL_PORT;
