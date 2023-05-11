@@ -5,5 +5,5 @@ Content-Type: application/json
 {
     "title": "Novo livro",
     "author": "John doe",
-    "isbnNumber": 7777777
+    "isbnNumber": 77777
 }
