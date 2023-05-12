@@ -1,8 +1,7 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import "dotenv/config";
 import cors from "cors";
 import conn from "./db/conn";
-import BookModel, { IBook } from "./models/Book";
 import routes from "./routes/router";
 
 const app = express();
