@@ -48,6 +48,7 @@ const bookController = {
 
       const { title, author, isbnNumber } = req.body;
       const book: IBook = new BookModel({
+        _id: id,
         title,
         author,
         isbnNumber,
