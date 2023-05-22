@@ -1,20 +1,35 @@
 import { Response, Request } from "express";
 import BookModel, { IBook } from "../models/BookModel";
+import { ZodError } from "zod";
+import { bookSchema, validateBook } from "../schemas/bookSchema";
 
 const bookController = {
   create: async (req: Request, res: Response) => {
     try {
       const { title, author, isbnNumber } = req.body;
+
+      bookSchema.parse(req.body);
+
       const newBook: IBook = new BookModel({
         title,
         author,
         isbnNumber,
       });
 
+      validateBook(newBook);
       await newBook.save();
-      res.status(201).json({ newBook, msg: "Livro criado com sucesso!" });
+
+      res.status(201).json({ newBook, msg: "Successfully created book!" });
     } catch (error) {
-      res.status(500).json({ error: "Erro ao criar livro!" });
+      if (error instanceof ZodError) {
+        return res.status(400).json(
+          error.issues.map((issue) => ({
+            message: issue.message,
+          }))
+        );
+      }
+
+      return res.status(500).json({ message: "Internal server error!" });
     }
   },
 
