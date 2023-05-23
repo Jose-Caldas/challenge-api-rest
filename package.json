@@ -4,7 +4,7 @@
   "description": "An API for a challenge",
   "main": "index.js",
   "engines": {
-    "node": "14.17.0"
+    "node": "<=18"
   },
   "author": "José Caldas",
   "license": "MIT",
