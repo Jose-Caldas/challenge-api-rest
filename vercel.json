@@ -1,3 +1,11 @@
 {
-  "redirects": [{ "source": "/(.*)", "destination": "/" }]
+  "version": 2,
+  "builds": [
+    {
+      "src": "src/index.ts",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": "(.*)",
+  "dest": "src/index.ts"
 }
