@@ -36,9 +36,9 @@ const bookController = {
   getAll: async (res: Response) => {
     try {
       const books = await BookModel.find();
-      res.status(200).json({ books, msg: "Livros carregados com sucesso!" });
+      res.status(200).json({ books, msg: "Books loaded successfully!" });
     } catch (error) {
-      res.status(404).json({ msg: "Nenhum livro encontrado!" });
+      res.status(404).json({ msg: "No books found!" });
     }
   },
 
@@ -48,7 +48,7 @@ const bookController = {
       const book = await BookModel.findById(id);
 
       if (!book) {
-        res.status(404).json({ msg: "Livro não encontrado!" });
+        res.status(404).json({ msg: "Book not found!" });
         return;
       }
       res.json(book);
@@ -72,11 +72,11 @@ const bookController = {
       const updateBook = await BookModel.findByIdAndUpdate(id, book);
 
       if (!updateBook) {
-        res.status(404).json({ msg: "Livro não encontrado!" });
+        res.status(404).json({ msg: "Book not found!" });
         return;
       }
 
-      res.status(200).json({ book, msg: "Livro atualizado com sucesso!" });
+      res.status(200).json({ book, msg: "Book updated successfully!" });
     } catch (error) {
       console.log(error);
     }
@@ -88,12 +88,12 @@ const bookController = {
 
       const book = await BookModel.findById(id);
       if (!book) {
-        res.status(404).json({ msg: "Livro não encontrado!" });
+        res.status(404).json({ msg: "Book not found!" });
         return;
       }
 
       const deleteBook = await BookModel.findByIdAndDelete(id);
-      res.status(200).json({ deleteBook, msg: "Livro excluído com sucesso!" });
+      res.status(200).json({ deleteBook, msg: "Book deleted successfully!" });
     } catch (error) {
       console.log(error);
     }
