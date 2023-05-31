@@ -26,6 +26,7 @@
     "@types/express": "^4.17.17",
     "@types/mongoose": "^5.11.97",
     "@types/supertest": "^2.0.12",
+    "@vitest/coverage-c8": "^0.31.3",
     "supertest": "^6.3.3",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.0.4",

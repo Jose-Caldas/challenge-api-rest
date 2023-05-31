@@ -1,4 +1,4 @@
-import { z, ZodError } from "zod";
+import { z } from "zod";
 
 const bookSchema = z.object({
   title: z

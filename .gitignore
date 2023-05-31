@@ -1,9 +1,16 @@
 /node_modules
 #
 .env
+.env.test
 #
 /build
 #
 Description.md
 #
 request.rest
+
+#
+coverage
+
+#
+.DS_Store
